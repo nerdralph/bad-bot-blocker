@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# nerdralph bad bot blocker
+# rewrite map program to whitelist good crawlers
 import sys
 import socket
 
@@ -6,6 +8,7 @@ BOT_SUFFIXES = {
     "google": ".googlebot.com",
     "bingbot": ".search.msn.com",
     "facebook": ".fbsv.net",
+    "duck": ".duckduckgo.com",
 }
 
 for line in sys.stdin:
