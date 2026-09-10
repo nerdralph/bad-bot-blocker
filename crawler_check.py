@@ -8,7 +8,6 @@ BOT_SUFFIXES = {
     "google": ".googlebot.com",
     "bingbot": ".search.msn.com",
     "facebook": ".fbsv.net",
-    "duck": ".duckduckgo.com",
     "petalbot": ".petalsearch.com",
 }
 
