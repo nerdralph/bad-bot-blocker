@@ -13,12 +13,12 @@ BOT_SUFFIXES = {
 }
 
 for line in sys.stdin:
-    ip, bot = line.strip().split('|', 1)
+    ip, bot = line.rstrip("\n").split(",", 1)
     suffix = BOT_SUFFIXES[bot.lower()]
 
     try:
         host = socket.gethostbyaddr(ip)[0]
-        ok = host.lower().endswith(suffix)
+        ok = host.lower().endswith(suffix) and ip in socket.gethostbyname_ex(host)[2]
     except Exception:
         ok = False
 
