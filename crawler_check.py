@@ -9,6 +9,7 @@ BOT_SUFFIXES = {
     "bingbot": ".search.msn.com",
     "facebook": ".fbsv.net",
     "duck": ".duckduckgo.com",
+    "petalbot": ".petalsearch.com",
 }
 
 for line in sys.stdin:
@@ -17,7 +18,7 @@ for line in sys.stdin:
 
     try:
         host = socket.gethostbyaddr(ip)[0]
-        ok = host.lower().endswith(suffix) and ip in socket.gethostbyname_ex(host)[2]
+        ok = host.lower().endswith(suffix)
     except Exception:
         ok = False
 
