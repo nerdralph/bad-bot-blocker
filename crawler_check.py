@@ -5,7 +5,7 @@ import sys
 import socket
 
 BOT_SUFFIXES = {
-    "google": ".googlebot.com",
+    "googlebot": ".googlebot.com",
     "bingbot": ".search.msn.com",
     "facebook": ".fbsv.net",
     "petalbot": ".petalsearch.com",
