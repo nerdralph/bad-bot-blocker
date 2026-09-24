@@ -1,0 +1,31 @@
+  RewriteEngine On
+
+  Define BOT_UA_PATTERN "(Googlebot|bingbot|externalhit_ua|PetalBot)"
+
+  # Unclaimed UA: skip verification, go straight to the Brotli check
+  RewriteCond %{HTTP_USER_AGENT} !${BOT_UA_PATTERN} [NC]
+  RewriteRule ^ - [S=2]
+
+  # Verified claimed crawler: bypass the remaining blocking rules
+  RewriteCond %{HTTP_USER_AGENT} ${BOT_UA_PATTERN} [NC]
+  RewriteCond ${crawler_check:%{REMOTE_ADDR},%1} =1
+  RewriteRule ^ - [L]
+
+  # Any claimed crawler reaching this point failed verification
+  RewriteRule ^ - [G,L]
+
+  # Brotli required
+  RewriteCond %{HTTP:Accept-Encoding} !\bbr\b [NC]
+  RewriteRule ^ - [R=406,L]
+
+  # Cookie challenge
+  Define BOT_COOKIE Bye-bye_bad_bots
+  RewriteCond %{HTTP_COOKIE} !(^|;\s*)BadBotBlock=${BOT_COOKIE}(;|$) [NC]
+  RewriteCond %{REQUEST_URI} !^/challenge\.html$ [NC]
+  RewriteRule ^ - [R=403,L,CO=BadBotBlock:${BOT_COOKIE}:%{SERVER_NAME}:0:/]
+
+  <Directory @DOCROOT@>
+      Options -Indexes +FollowSymLinks +MultiViews
+      DirectoryIndex index.html
+      RemoveLanguage .br
+  </Directory>
