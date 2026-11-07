@@ -9,6 +9,7 @@ BOT_SUFFIXES = {
     "googlebot": ".googlebot.com",
     "bingbot": ".search.msn.com",
     "externalhit_ua": ".fbsv.net",
+    "duckduckbot": ".duckduckgo.com",
 }
 
 
