@@ -1,5 +1,6 @@
 # bad-bot-blocker
 block bad bots benignly for Apache on Linux
+
 Alpha prototype for testing.
 
 The intention of this project is a transparent bad bot blocker for Apache.  Transparent means invisible to human browsers and friendly bots like Googlebot.
